@@ -26,8 +26,6 @@ class UpdateBlogPostTest extends TestCase
     {
         $this->login();
 
-
-
         $this->post(action([BlogPostAdminController::class, 'update'], $this->blogPost->slug), [
             'title' => $this->blogPost->title,
             'body' => $this->blogPost->body,

@@ -23,22 +23,19 @@ class VoteButtonTest extends DuskTestCase
 
         #navigate to the post
         $this->browse(function (Browser $browser) use ($post) {
+            #check the likes counter
             $browser->visit(action([BlogPostController::class, 'show'], $post->slug))
                 ->with('@vote-button', function (Browser $button) {
                     $button->assertSee(10);
                 })
+                #click the vote button
                 ->click('@vote-button')                
-                ->pause(500)
+                ->pause(500)                 
                 ->screenshot('vote-button-clicked')
                 ->with('@vote-button', function (Browser $button) {
                     $button->assertSee(11);
                 });
         });
-
-        #check the likes counter
-
-        #click the vote button
-
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
